@@ -281,6 +281,7 @@ session_start();
                         var qanswer = questions[i].attributes[2].value;
                         var qid = questions[i].attributes[0].value;
                         var selected;
+                        var True_Answer = 'no';
 
                         var options = (questions[i].parentElement).querySelectorAll('input');
                         if(options[0].checked){
@@ -295,6 +296,7 @@ session_start();
                         console.log("selected "+selected)
                         if(String(qanswer) == String(selected)){
                             mark_counter++;
+                            True_Answer = 'yes';
                             console.log("inside mark_counter "+mark_counter)
                         }
                         console.log("outside mark_counter "+mark_counter)
@@ -308,7 +310,7 @@ session_start();
                             $.ajax({
                                 type: "get",
                                 url: "http://localhost/online_assessment/database/add_answer.php",
-                                data: {"examId":examId,"qid":qid,"selected":selected,"qtype":qtype},
+                                data: {"examId":examId,"qid":qid,"selected":selected,"qtype":qtype,"True_Answer":True_Answer},
                                 async: false
                             }).done(function (data) {
                                 //alert(data)
@@ -337,7 +339,7 @@ session_start();
                         }
                     }else if(qtype=="multiple-choice"){
                         q_counter++;
-
+                        var True_Answer = 'no';
                         var selected;
                         var options = ((questions[i].parentElement).querySelectorAll('input'));
                         console.log(options)
@@ -361,6 +363,7 @@ session_start();
 
                         if(qanswer == selected){
                             mark_counter++;
+                            True_Answer='yes';
                             console.log("inside mark_counter "+mark_counter)
                         }
                         console.log("outside mark_counter "+mark_counter)
@@ -370,7 +373,7 @@ session_start();
                             $.ajax({
                                 type: "get",
                                 url: "http://localhost/online_assessment/database/add_answer.php",
-                                data: {"examId":examId,"qid":qid,"selected":selected,"qtype":qtype},
+                                data: {"examId":examId,"qid":qid,"selected":selected,"qtype":qtype,"True_Answer":True_Answer},
                                 async: false
                             }).done(function (data) {
                                 //alert(data)

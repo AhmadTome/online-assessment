@@ -60,6 +60,17 @@ session_start();
                             echo ' <p class="text-left" style="color: white; background-color: red" > Access to this page is illegal, Please sign in </p>';
                         }
                         ?>
+
+                        <div style="border: 0.1px solid grey; padding: 10px;" >
+                            <h3>The Statistic Information :</h3>
+                            <select class="browser-default custom-select" id="statistic_select">
+                                <option selected>Open this select menu</option>
+                                <option value="1">The Average students pass the exam</option>
+                                <option value="2">The number of students passed the exam </option>
+                                <option value="3">The number of students failed the exam </option>
+                            </select><br><br>
+                            <input class="form-control" type="text" readonly id="statistic">
+                        </div>
                         <?php
                          echo ' <table class="table">
                                             <thead>
@@ -140,6 +151,20 @@ session_start();
             $("#examform").attr('action',$("#examform").attr('action')+'?examId=' +examId+'&email='+email);
 
             $("#examform").submit();
+        });
+
+
+        $('#statistic_select').on("change",function () {
+            var val = $(this).val();
+            $.ajax({
+                type: "get",
+                url: "http://localhost/online_assessment/database/statistic.php",
+                data: {"val":val},
+                async: false
+            }).done(function (data) {
+                $("#statistic").val(data)
+            })
+
         })
     })
 

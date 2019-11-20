@@ -43,7 +43,7 @@ session_start();
         <div class="panel panel-sign">
             <div class="panel-title-sign mt-xl text-left">
                 <h2 class="title text-uppercase text-bold m-none"> create account for lecturer &nbsp;&nbsp;<i class="fa fa-user mr-xs"></i></h2>
-            </div>
+        </div>
             <div class="panel-body">
                 <form name="loginForm" action="../database/register.php" method="post" accept-charset="utf-8" onsubmit="return validateForm()">
                     <div class="form-group mb-lg">

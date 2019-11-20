@@ -21,9 +21,10 @@ if($questionType == "true-false" || $questionType == "multiple-choice" || $quest
     $qid = $_REQUEST['qid'];
     $selected = $_REQUEST['selected'];
     $qtype = $_REQUEST['qtype'];
+    $True_Answer = $_REQUEST['True_Answer'];
     $u_email = $_SESSION['user_email'];
 
-    $query1 = "INSERT INTO `answers`(`e_id`, `q_id`, `u_id`, `answer`, `submitted`, `qtype`) VALUES ('$examId','$qid','$u_email','$selected','no','$qtype')";
+    $query1 = "INSERT INTO `answers`(`e_id`, `q_id`, `u_id`, `answer`, `submitted`, `qtype`,`True_Answer`) VALUES ('$examId','$qid','$u_email','$selected','no','$qtype','$True_Answer')";
     $result1 = mysqli_query($conn, $query1);
     if ($result1) {
         echo 'done';
