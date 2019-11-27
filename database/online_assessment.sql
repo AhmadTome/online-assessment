@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2019 at 11:43 AM
+-- Generation Time: Nov 27, 2019 at 10:42 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -35,16 +35,20 @@ CREATE TABLE `answers` (
   `u_id` varchar(255) NOT NULL,
   `answer` text NOT NULL,
   `submitted` varchar(10) NOT NULL,
-  `qtype` varchar(255) NOT NULL
+  `qtype` varchar(255) NOT NULL,
+  `True_Answer` varchar(10) NOT NULL DEFAULT '-'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `answers`
 --
 
-INSERT INTO `answers` (`id`, `e_id`, `q_id`, `u_id`, `answer`, `submitted`, `qtype`) VALUES
-(198, 4, 20, 'atome@fornova.net', '14,15,', 'yes', 'code-correction'),
-(199, 4, 21, 'atome@fornova.net', '6,7,', 'yes', 'code-correction');
+INSERT INTO `answers` (`id`, `e_id`, `q_id`, `u_id`, `answer`, `submitted`, `qtype`, `True_Answer`) VALUES
+(204, 7, 17, 'atome@fornova.net', 'true', 'yes', 'true-false', 'yes'),
+(205, 6, 22, 'atome@fornova.net', 'choice 2', 'yes', 'multiple-choice', 'yes'),
+(206, 4, 20, 'atome@asaltech.com', '8,9,', 'yes', 'code-correction', 'yes'),
+(207, 4, 21, 'atome@asaltech.com', '3,4,', 'yes', 'code-correction', 'no'),
+(208, 8, 23, 'atome@fornova.net', 'the answer is', 'yes', 'essay', 'no');
 
 -- --------------------------------------------------------
 
@@ -66,7 +70,8 @@ CREATE TABLE `exam` (
 INSERT INTO `exam` (`id`, `title`, `time`, `submitted`) VALUES
 (4, 'Java First', '5', 'no'),
 (6, 'shit', '10', 'no'),
-(7, 'test', '10', 'no');
+(7, 'test', '10', 'no'),
+(8, 'essay exam', '15', 'no');
 
 -- --------------------------------------------------------
 
@@ -95,7 +100,8 @@ INSERT INTO `exam_questions` (`id`, `e_id`, `q_id`) VALUES
 (11, 6, 16),
 (12, 7, 22),
 (13, 7, 17),
-(14, 7, 16);
+(14, 7, 16),
+(15, 8, 23);
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,8 @@ INSERT INTO `questions` (`id`, `q_type`, `q_text`, `level`) VALUES
 (19, 'true-false', 'Garbage Collection is manual process.\r\n', 'Easy'),
 (20, 'code-correction', 'public void newShape(String shape) {\r\n        switch (shape) {\r\n            case \"Line\":\r\n                Shape line = new Line(startX, startY, endX, endY);\r\n            shapes.add(line);\r\n            break;\r\n                case \"Oval\":\r\n            Shape oval = new Oval(startX, startY, endX, endY);\r\n            shapes.add(oval);\r\n            break;\r\n            case \"Rectangle\":\r\n            Shape rectangle = new Rectangle(startX, startY, endX, endY);\r\n            shapes.add(rectangle);\r\n            break;\r\n            default:\r\n            System.out.println(\"ERROR. Check logic.\");\r\n        }\r\n        }', 'Easy'),
 (21, 'code-correction', 'public class Robot {  \r\n        int xlocation;  \r\n        int ylocation;  \r\n        String name;  \r\n        static int ccount = 0;  \r\n        public Robot(int xxlocation, int yylocation, String nname) {  \r\n            xlocation = xxlocation;  \r\n            ylocation = yylocation;  \r\n            name = nname;  \r\n            ccount++;         \r\n        } \r\n  }', 'Easy'),
-(22, 'multiple-choice', 'multiple choice', 'Easy');
+(22, 'multiple-choice', 'multiple choice', 'Easy'),
+(23, 'essay', 'essay', 'Easy');
 
 -- --------------------------------------------------------
 
@@ -280,25 +287,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `exam_questions`
 --
 ALTER TABLE `exam_questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `q_code_correction`
